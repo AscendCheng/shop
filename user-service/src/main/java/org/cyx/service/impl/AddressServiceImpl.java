@@ -4,6 +4,7 @@ import org.cyx.model.AddressDO;
 import org.cyx.mapper.AddressMapper;
 import org.cyx.service.AddressService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressDO> implements AddressService {
+    @Autowired
+    private AddressMapper addressMapper;
 
+    @Override
+    public AddressDO getDetail(String id) {
+        return addressMapper.selectById(id);
+    }
 }

@@ -2,6 +2,7 @@ package org.cyx.mapper;
 
 import org.cyx.model.AddressDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author cyx
  * @since 2021-02-08
  */
+@Repository
 public interface AddressMapper extends BaseMapper<AddressDO> {
 
 }

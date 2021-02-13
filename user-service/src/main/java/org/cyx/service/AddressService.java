@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-02-08
  */
 public interface AddressService extends IService<AddressDO> {
-
+    AddressDO getDetail(String id);
 }

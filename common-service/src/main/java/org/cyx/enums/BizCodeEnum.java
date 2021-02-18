@@ -7,6 +7,9 @@ public enum BizCodeEnum {
      * 通用操作码
      */
     OPS_REPEAT(110001,"重复操作"),
+    OPS_SUCCESS(110002,"操作成功"),
+    OPS_FAILE(110003,"操作失败"),
+
 
     /**
      *验证码
@@ -21,7 +24,12 @@ public enum BizCodeEnum {
      */
     ACCOUNT_REPEAT(250001,"账号已经存在"),
     ACCOUNT_UNREGISTER(250002,"账号不存在"),
-    ACCOUNT_PWD_ERROR(250003,"账号或者密码错误");
+    ACCOUNT_PWD_ERROR(250003,"账号或者密码错误"),
+
+    /**
+     * oss
+     * */
+    OSS_UPLOAD_FAIL(300001,"文件上传失败");
 
     @Getter
     private int code;

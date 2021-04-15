@@ -2,14 +2,13 @@ package org.cyx.controller;
 
 
 import io.swagger.annotations.ApiOperation;
+import org.cyx.request.UserLoginRequest;
 import org.cyx.request.UserRegisterRequest;
 import org.cyx.service.UserService;
 import org.cyx.util.JsonData;
+import org.cyx.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -29,6 +28,18 @@ public class UserController {
     @PostMapping("/register")
     public JsonData register(@RequestBody UserRegisterRequest userRegisterRequest) {
         return userService.register(userRegisterRequest);
+    }
+
+    @ApiOperation("用户登录")
+    @PostMapping("/login")
+    public JsonData login(@RequestBody UserLoginRequest userLoginRequest) {
+        return userService.login(userLoginRequest);
+    }
+
+    @ApiOperation("用户详情")
+    @GetMapping("/detail")
+    public UserVo detail(){
+        return userService.detail();
     }
 }
 

@@ -1,9 +1,18 @@
 package org.cyx.util;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -11,7 +20,9 @@ import java.util.Random;
  * @Author cyx
  * @Date 2021/2/15
  **/
+@Slf4j
 public class CommonUtil {
+    private static final String ALL_CHAR_NUM = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     /**
      * 获取ip
@@ -87,4 +98,36 @@ public class CommonUtil {
     public static long getCurrentTimeStamp() {
         return System.currentTimeMillis();
     }
+
+    public static String getRandomString(int length){
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for(int i =0;i<length;i++){
+            sb.append(ALL_CHAR_NUM.charAt(random.nextInt(ALL_CHAR_NUM.length())));
+        }
+        return sb.toString();
+    }
+
+    public static void sengMsg(HttpServletResponse response, Object obj){
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try(PrintWriter printWriter = response.getWriter();) {
+            response.setContentType("application/json;charset=utf-8");
+            printWriter.print(objectMapper.writeValueAsString(obj));
+            response.flushBuffer();
+        } catch (IOException e) {
+            log.error("返回给前端异常");
+        }
+    }
+
+    public static Map<String,Object> iPage2Map(IPage iPage,Object data){
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("total_record",iPage.getTotal());
+        resultMap.put("total_page",iPage.getPages());
+        resultMap.put("current_data",data);
+        resultMap.put("current_page",iPage.getCurrent());
+        resultMap.put("page,size",iPage.getSize());
+        return resultMap;
+    }
+
 }

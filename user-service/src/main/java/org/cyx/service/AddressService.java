@@ -2,6 +2,9 @@ package org.cyx.service;
 
 import org.cyx.model.AddressDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.cyx.request.AddressRequest;
+import org.cyx.util.JsonData;
+import org.cyx.vo.AddressVo;
 
 /**
  * <p>
@@ -12,5 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-02-08
  */
 public interface AddressService extends IService<AddressDO> {
-    AddressDO getDetail(String id);
+    AddressVo getDetail(String id);
+
+    JsonData add(AddressRequest addressRequest);
+
+    JsonData del(String addressId);
 }

@@ -1,4 +1,4 @@
-package org.cyx.entity;
+package org.cyx.model;
 
 import lombok.Getter;
 import lombok.Setter;

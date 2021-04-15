@@ -3,14 +3,14 @@ package org.cyx.config;
 import org.cyx.util.OssBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description OssConfig
  * @Author cyx
  * @Date 2021/2/16
  **/
-@Component
+@Configuration
 public class OssConfig {
     @Value("${oss.secretId}")
     private String secretId;

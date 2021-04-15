@@ -1,0 +1,49 @@
+package org.cyx.vo;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
+/**
+ * @Description UserVo
+ * @Author cyx
+ * @Date 2021/2/24
+ **/
+@Data
+public class UserVo {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 昵称
+     */
+    private String name;
+
+    /**
+     * 头像
+     */
+    private String headImg;
+
+    /**
+     * 用户签名
+     */
+    private String slogan;
+
+    /**
+     * 0表示女，1表示男
+     */
+    private Integer sex;
+
+    /**
+     * 积分
+     */
+    private Integer points;
+
+    /**
+     * 邮箱
+     */
+    private String mail;
+}

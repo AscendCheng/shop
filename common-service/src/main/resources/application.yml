@@ -25,3 +25,8 @@ mybatis-plus:
 logging:
   level:
     root: INFO
+
+oss:
+  secretId: xxxFF
+  secretKey: xxx
+  region: ap-beijing

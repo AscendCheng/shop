@@ -1,5 +1,6 @@
 package org.cyx.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.cyx.model.ProductDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductMapper extends BaseMapper<ProductDO> {
 
+    int lockProductStock(@Param("productId") long productId, @Param("buyNum") int buyNum);
+
+    int unlockProductStock(@Param("productId") Long productId,@Param("buyNum") int buyNum);
 }

@@ -1,5 +1,7 @@
 package org.cyx.util;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -74,5 +76,17 @@ public class JsonData {
      */
     public static JsonData buildResult(BizCodeEnum codeEnum){
         return JsonData.buildCodeAndMsg(codeEnum.getCode(),codeEnum.getMessage());
+    }
+
+    public boolean isSuccess(){
+        return this.code == 0;
+    }
+
+    public boolean isFail(){
+        return this.code != 0;
+    }
+
+    public <T> T getData(TypeReference<T> typeReference){
+        return JSONObject.parseObject(JSONObject.toJSONString(data),typeReference);
     }
 }

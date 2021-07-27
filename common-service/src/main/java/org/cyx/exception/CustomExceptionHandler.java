@@ -2,7 +2,6 @@ package org.cyx.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.cyx.util.JsonData;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Author cyx
  * @Date 2021/2/10
  **/
-@ControllerAdvice
+// @ControllerAdvice
 @Slf4j
 public class CustomExceptionHandler {
     @ExceptionHandler(value = Exception.class)

@@ -2,6 +2,9 @@ package org.cyx.service;
 
 import org.cyx.model.ProductDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.cyx.model.ProductMessage;
+import org.cyx.request.LockProductRequest;
+import org.cyx.util.JsonData;
 import org.cyx.vo.ProductVO;
 
 import java.util.List;
@@ -21,4 +24,8 @@ public interface ProductService extends IService<ProductDO> {
     ProductVO findDetailById(String id);
 
     List<ProductVO> findDetailByIdBatch(List<Long> productIdList);
+
+    JsonData lockProduct(LockProductRequest lockProductRequest);
+
+    boolean releaseProductStock(ProductMessage productMessage);
 }

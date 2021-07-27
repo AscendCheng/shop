@@ -2,7 +2,10 @@ package org.cyx.service;
 
 import org.cyx.request.CartItemRequest;
 import org.cyx.util.JsonData;
+import org.cyx.vo.CartItemVo;
 import org.cyx.vo.CartVo;
+
+import java.util.List;
 
 /**
  * @Description CartService
@@ -19,4 +22,6 @@ public interface CartService {
     void deleteProduct(Long productId);
 
     void changeItemNum(CartItemRequest cartItemRequest);
+
+    List<CartItemVo> confirmOrderCartItems(List<Long> productIds);
 }

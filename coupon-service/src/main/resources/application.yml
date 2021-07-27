@@ -1,38 +1,84 @@
-server:
-  port: 9002
-  servlet:
-    encoding:
-      force: true
-      charset: UTF-8
-
-spring:
-  application:
-    name: coupon-service
-
-  #数据库配置
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
-  redis:
-    host: 140.143.141.194
-    port: 6379
-#配置plus打印sql日志
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
-#设置日志级别,ERROR/WARN/INFO/DEBUG,默认是INFO以上才显示
-logging:
-  level:
-    root: INFO
-
-oss:
-  secretId: xxxFF
-  secretKey: xxx
-  region: ap-beijing
-
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
+#server:
+#  port: 9002
+#  servlet:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+#
+#spring:
+#  application:
+#    name: coupon-service
+#  cloud:
+#  #注册中⼼地址
+#    nacos:
+#      discovery:
+#       server-addr: 140.143.141.194:8848
+#  #消息队列
+#  rabbitmq:
+#    host: 140.143.141.194
+#    port: 5672
+#    virtual-host: /dev
+#    password: password
+#    username: admin
+#    #开启手动确认消息
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#
+#  #数据库配置
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+#  redis:
+#    host: 140.143.141.194
+#    port: 6379
+#    password: redispsw
+##配置plus打印sql日志
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+#
+##设置日志级别,ERROR/WARN/INFO/DEBUG,默认是INFO以上才显示
+#logging:
+#  level:
+#    root: INFO
+#
+#oss:
+#  secretId: xxxFF
+#  secretKey: xxx
+#  region: ap-beijing
+#
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#
+##seata:
+##  tx-service-group: ${spring.application.name}-group
+##  service:
+##    grouplist:
+##      shop: 127.0.0.1:8091
+##    vgroup-mapping:
+##      coupon-service-group: shop
+#
+#mqconfig:
+#  #延迟队列，不能被监听消费
+#  coupon_release_delay_queue: coupon.release.delay.queue
+#  #延迟队列的消息过期后转发的队列
+#  coupon_release_queue: coupon.release.queue
+#  #交换机
+#  coupon_event_exchange: coupon.event.exchange
+#  #进入延迟队列的路由key
+#  coupon_release_delay_routing_key: coupon.release.delay.routing.key
+#  #消息过期，进入释放死信队列的key
+#  coupon_release_routing_key: coupon.release.routing.key
+#  #消息过期时间,毫秒,测试改为15秒
+#  ttl: 360000
+#
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000
+#        readTimeout: 600000

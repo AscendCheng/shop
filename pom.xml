@@ -30,6 +30,7 @@
         <commons.codec.version>1.15</commons.codec.version>
         <springfox.boot.starter.version>3.0.0</springfox.boot.starter.version>
         <docker.image.prefix>cyx-cloud</docker.image.prefix>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!--跳过单元测试-->
         <skipTests>true</skipTests>

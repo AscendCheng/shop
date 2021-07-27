@@ -1,0 +1,76 @@
+#server:
+#  port: 9004
+#  servlet:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+#
+#spring:
+#  application:
+#    name: order-service
+#  cloud:
+#    #注册中⼼地址
+#    nacos:
+#      discovery:
+#        server-addr: 140.143.141.194:8848
+#  #消息队列
+#  rabbitmq:
+#    host: 140.143.141.194
+#    port: 5672
+#    virtual-host: /dev
+#    password: password
+#    username: admin
+#    #开启手动确认消息
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#  #数据库配置
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+#  redis:
+#    host: 140.143.141.194
+#    port: 6379
+#    password: redispsw
+##配置plus打印sql日志
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+#
+##设置日志级别,ERROR/WARN/INFO/DEBUG,默认是INFO以上才显示
+#logging:
+#  level:
+#    root: INFO
+#
+#oss:
+#  secretId: xxxFF
+#  secretKey: xxx
+#  region: ap-beijing
+#
+#mybatis:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#
+#
+#mqconfig:
+#  #延迟队列
+#  order_close_delay_queue: order.close.delay.queue
+#  #延迟队列到期后转发的队列
+#  order_close_queue: order.close.queue
+#  #交换机
+#  order_event_exchange: order.event.exchange
+#  #进入延迟队列的路由Key
+#  order_close_delay_routing_key: order.close.delay.routing.key
+#  #消息过期，进入释放队列的Key,进入死信队列的Key
+#  order_close_routing_key: order.close.delay.routing.key
+#  #消息过期时间
+#  ttl: 300000
+#
+##支付宝配置
+#alipay:
+#  #支付宝成功的跳转地址
+#  success_return_url: https://xdclass.net/
+#  #支付宝回调地址
+#  callback_url: http://4z257q.natappfree.cc/api/order/alipay

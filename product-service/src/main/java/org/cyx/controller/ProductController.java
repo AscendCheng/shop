@@ -3,6 +3,7 @@ package org.cyx.controller;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.cyx.request.LockProductRequest;
 import org.cyx.service.ProductService;
 import org.cyx.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/product")
-public class ProductController {
+public class   ProductController {
     @Autowired
     private ProductService productService;
 
@@ -37,6 +38,12 @@ public class ProductController {
     @GetMapping("/detail/{product_id}")
     public JsonData detail(@ApiParam(value = "商品ID",required = true) @PathVariable("product_id") String productId){
         return JsonData.buildSuccess(productService.findDetailById(productId));
+    }
+
+    @PostMapping("/lock_product")
+    public JsonData lockProduct(@ApiParam("商品库存锁定")@RequestBody LockProductRequest lockProductRequest){
+        JsonData result = productService.lockProduct(lockProductRequest);
+        return JsonData.buildSuccess(result);
     }
 }
 

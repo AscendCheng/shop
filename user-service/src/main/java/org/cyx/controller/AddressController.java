@@ -27,6 +27,12 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+    @ApiOperation("查询所有收货地址")
+    @GetMapping("/list")
+    public JsonData list(){
+        return addressService.listAddress();
+    }
+
     @ApiOperation("根据Id获取详情")
     @GetMapping("/getDetail")
     public JsonData getDetail(@ApiParam(value = "地址id", required = true) @RequestParam("id") String id) {

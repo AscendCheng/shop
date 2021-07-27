@@ -11,4 +11,7 @@ public class CacheKey {
 
     // 购物车hash结果，key是唯一标识
     public static final String CART_KEY  = "cart:%s";
+
+    // 提交表单的token key
+    public static final String SUBMIT_ORDER_TOKEN_KEY  = "order:submit:%s";
 }

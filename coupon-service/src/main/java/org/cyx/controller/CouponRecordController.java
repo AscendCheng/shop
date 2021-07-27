@@ -4,6 +4,7 @@ package org.cyx.controller;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.cyx.enums.BizCodeEnum;
+import org.cyx.request.LockCouponRecordRequest;
 import org.cyx.service.CouponRecordService;
 import org.cyx.util.JsonData;
 import org.cyx.vo.CouponRecordVo;
@@ -35,11 +36,17 @@ public class CouponRecordController {
     }
 
     @ApiOperation("查询优惠券详情记录")
-    @GetMapping("detail/{record_id}")
+    @GetMapping("/detail/{record_id}")
     public JsonData getCouponRecordDetail(@ApiParam(value = "记录Id") @PathVariable("record_id") long recordId) {
         CouponRecordVo couponRecordVo = couponRecordService.findById(recordId);
         return couponRecordVo == null ? JsonData.buildError(BizCodeEnum.COUPON_NO_EXITS.getMessage())
                 : JsonData.buildSuccess(couponRecordVo);
+    }
+
+    @ApiOperation("rpc锁定优惠券")
+    @PostMapping("/lockCouponRecords")
+    public JsonData lockCouponRecords(@ApiParam(value = "锁定优惠券对象")@RequestBody LockCouponRecordRequest lockCouponRecordRequest){
+        return couponRecordService.lockCouponRecords(lockCouponRecordRequest);
     }
 }
 

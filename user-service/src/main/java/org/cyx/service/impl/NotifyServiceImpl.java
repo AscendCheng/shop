@@ -75,7 +75,8 @@ public class NotifyServiceImpl implements NotifyService {
         String cacheKey = String.format(CacheKey.CHECK_CODE_KEY, SendCodeEnum.USER_REGISTER.name(), to);
         redisTemplate.opsForValue().set(cacheKey, value, CODE_EXPIRE_TIME, TimeUnit.SECONDS);
         String content = String.format(REGISTER_CONTENT, code);
-        mailService.sendMail(to, REGISTER_SUBJECT, content);
+        log.info("验证码：{}",content);
+        // mailService.sendMail(to, REGISTER_SUBJECT, content);
         return true;
     }
 

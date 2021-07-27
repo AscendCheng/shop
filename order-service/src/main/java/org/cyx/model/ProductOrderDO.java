@@ -1,13 +1,14 @@
 package org.cyx.model;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * <p>
@@ -70,7 +71,7 @@ public class ProductOrderDO implements Serializable {
     /**
      * 用户id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 0表示未删除，1表示已经删除

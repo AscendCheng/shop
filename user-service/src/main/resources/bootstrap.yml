@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user-service
+  cloud:
+    #注册中⼼地址
+    nacos:
+      config:
+        server-addr: 140.143.141.194:8848
+        file-extension: yaml 
+  profiles:
+    active: dev     

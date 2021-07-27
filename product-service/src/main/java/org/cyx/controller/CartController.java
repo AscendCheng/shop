@@ -6,9 +6,12 @@ import io.swagger.annotations.ApiParam;
 import org.cyx.request.CartItemRequest;
 import org.cyx.service.CartService;
 import org.cyx.util.JsonData;
+import org.cyx.vo.CartItemVo;
 import org.cyx.vo.CartVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Description CartController
@@ -53,5 +56,12 @@ public class CartController {
     public JsonData changeItemNum(@ApiParam("购物项") @RequestBody CartItemRequest cartItemRequest) {
         cartService.changeItemNum(cartItemRequest);
         return JsonData.buildSuccess();
+    }
+
+    @ApiOperation("下单商品最新信息")
+    @PostMapping("/confirm_order_cart_item")
+    public JsonData confirmOrderCartItem(@RequestBody List<Long> productIds){
+        List<CartItemVo> cartItemVoList = cartService.confirmOrderCartItems(productIds);
+        return JsonData.buildSuccess(cartItemVoList);
     }
 }

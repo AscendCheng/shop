@@ -104,6 +104,21 @@ public class CartServiceImpl implements CartService {
         myCart.put(cartItemVo.getProductId(), JSON.toJSONString(cartItemVo));
     }
 
+    @Override
+    public List<CartItemVo> confirmOrderCartItems(List<Long> productIds) {
+        // 获取购物车全部购物项
+        List<CartItemVo> cartItemVoList = buildCartItem(true);
+        // 根据需要的商品Id进行过滤，并清空购物项
+        List<CartItemVo> resultList = cartItemVoList.stream().filter(obj -> {
+            if(productIds.contains(obj.getProductId())){
+                this.deleteProduct(obj.getProductId());
+                return true;
+            }
+            return false;
+        }).collect(Collectors.toList());
+        return resultList;
+    }
+
     private List<CartItemVo> buildCartItem(boolean latestPrice) {
         BoundHashOperations<String, Object, Object> myCart = getMyCartOps();
         List<Object> items = myCart.values();
@@ -113,7 +128,9 @@ public class CartServiceImpl implements CartService {
             myCartItems.add(itemVo);
         }
         List<Long> productIdList = myCartItems.stream().map(CartItemVo::getProductId).collect(Collectors.toList());
-        setProductLatestPrice(myCartItems, productIdList);
+        if(latestPrice){
+            setProductLatestPrice(myCartItems, productIdList);
+        }
         return myCartItems;
     }
 

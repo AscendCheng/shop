@@ -1,15 +1,15 @@
 package org.cyx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cyx.enums.AddressStatusEnum;
 import org.cyx.enums.BizCodeEnum;
 import org.cyx.interceptor.LoginInterceptor;
-import org.cyx.model.AddressDO;
 import org.cyx.mapper.AddressMapper;
+import org.cyx.model.AddressDO;
 import org.cyx.model.LoginUser;
 import org.cyx.request.AddressRequest;
 import org.cyx.service.AddressService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cyx.util.JsonData;
 import org.cyx.vo.AddressVo;
 import org.springframework.beans.BeanUtils;
@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -30,6 +31,14 @@ import java.util.Date;
 public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressDO> implements AddressService {
     @Autowired
     private AddressMapper addressMapper;
+
+
+    @Override
+    public JsonData listAddress() {
+        LoginUser user = LoginInterceptor.threadLocal.get();
+        List<AddressDO> addressDOList = addressMapper.selectList(new QueryWrapper<AddressDO>().eq("user_id",user.getId()));
+        return JsonData.buildSuccess(addressDOList);
+    }
 
     @Override
     public AddressVo getDetail(String id) {

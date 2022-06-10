@@ -4,16 +4,16 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.cyx.model.AddressDO">
-        <id column="id" property="id" />
-        <result column="user_id" property="userId" />
-        <result column="default_status" property="defaultStatus" />
-        <result column="receive_name" property="receiveName" />
-        <result column="phone" property="phone" />
-        <result column="province" property="province" />
-        <result column="city" property="city" />
-        <result column="region" property="region" />
-        <result column="detail_address" property="detailAddress" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="default_status" property="defaultStatus"/>
+        <result column="receive_name" property="receiveName"/>
+        <result column="phone" property="phone"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="region" property="region"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

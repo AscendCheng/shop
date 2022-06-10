@@ -42,7 +42,7 @@ public class CouponController {
 
     @ApiOperation("新人优惠券")
     @PostMapping("/addNewUserCoupon")
-    public JsonData addNewUserCoupon(@RequestBody NewUserCouponRequest newUserCouponRequest){
+    public JsonData addNewUserCoupon(@RequestBody NewUserCouponRequest newUserCouponRequest) {
         JsonData result = couponService.initNewUserCoupon(newUserCouponRequest);
         return result;
     }

@@ -10,10 +10,10 @@ import lombok.Data;
  * @Author cyx
  * @Date 2021/6/27
  **/
-@ApiModel(value = "商品锁定对象",description = "商品锁定对象协议")
+@ApiModel(value = "商品锁定对象", description = "商品锁定对象协议")
 @Data
 public class OrderItemRequest {
-    @ApiModelProperty(value = "商品Id",example = "123123")
+    @ApiModelProperty(value = "商品Id", example = "123123")
     @JsonProperty("product_id")
     private long productId;
 

@@ -81,5 +81,5 @@ public class ProductOrderVo {
     private String receiverAddress;
 
 
-    private List<OrderItemVo>  itemList;
+    private List<OrderItemVo> itemList;
 }

@@ -49,7 +49,7 @@ public class MqConfig {
 
     /**
      * 第二个队列的路由key
-     *
+     * <p>
      * 即进入死信队列的路由key
      */
     @Value("${mqconfig.coupon_release_routing_key}")
@@ -62,36 +62,36 @@ public class MqConfig {
     private Integer ttl;
 
     @Bean
-    public MessageConverter messageConverter(){
+    public MessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
-    public Exchange couponEventExchange(){
-        return new TopicExchange(eventExchange,true,false);
+    public Exchange couponEventExchange() {
+        return new TopicExchange(eventExchange, true, false);
     }
 
     @Bean
-    public Queue couponReleaseDelayQueue(){
-        Map<String,Object> argsMap = new HashMap<>();
-        argsMap.put("x-message-ttl",ttl);
-        argsMap.put("x-dead-letter-routing-key",couponReleaseRoutingKey);
-        argsMap.put("x-dead-letter-exchange",eventExchange);
-        return new Queue(couponReleaseDelayQueue,true,false,false,argsMap);
+    public Queue couponReleaseDelayQueue() {
+        Map<String, Object> argsMap = new HashMap<>();
+        argsMap.put("x-message-ttl", ttl);
+        argsMap.put("x-dead-letter-routing-key", couponReleaseRoutingKey);
+        argsMap.put("x-dead-letter-exchange", eventExchange);
+        return new Queue(couponReleaseDelayQueue, true, false, false, argsMap);
     }
 
     @Bean
-    public Queue couponReleaseQueue(){
-        return new Queue(couponReleaseQueue,true,false,false);
+    public Queue couponReleaseQueue() {
+        return new Queue(couponReleaseQueue, true, false, false);
     }
 
     @Bean
-    public Binding couponReleaseBinding(){
-        return new Binding(couponReleaseQueue,Binding.DestinationType.QUEUE,eventExchange,couponReleaseRoutingKey,null);
+    public Binding couponReleaseBinding() {
+        return new Binding(couponReleaseQueue, Binding.DestinationType.QUEUE, eventExchange, couponReleaseRoutingKey, null);
     }
 
     @Bean
-    public Binding couponReleaseDelayBinding(){
-        return new Binding(couponReleaseDelayQueue,Binding.DestinationType.QUEUE,eventExchange,couponReleaseDelayRoutingKey,null);
+    public Binding couponReleaseDelayBinding() {
+        return new Binding(couponReleaseDelayQueue, Binding.DestinationType.QUEUE, eventExchange, couponReleaseDelayRoutingKey, null);
     }
 }

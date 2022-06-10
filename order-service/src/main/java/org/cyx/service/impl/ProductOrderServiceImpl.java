@@ -92,13 +92,13 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
         LoginUser loginUser = LoginInterceptor.threadLocal.get();
 
         String token = confirmOrderRequest.getToken();
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             return JsonData.buildResult(BizCodeEnum.ORDER_CONFIRM_TOKEN_EQUAL_FAIL);
         }
 
         String script = "if redis.call('get',KEYS[1])== ARGV[1] then return redis.call('del',KEY[1]) else return 0 end";
-        Long result = redisTemplate.execute(new DefaultRedisScript<>(script,Long.class),Arrays.asList(String.format(CacheKey.SUBMIT_ORDER_TOKEN_KEY,loginUser.getId())),token);
-        if(result == 0L){
+        Long result = redisTemplate.execute(new DefaultRedisScript<>(script, Long.class), Arrays.asList(String.format(CacheKey.SUBMIT_ORDER_TOKEN_KEY, loginUser.getId())), token);
+        if (result == 0L) {
             throw new BizException(BizCodeEnum.ORDER_CONFIRM_TOKEN_EQUAL_FAIL);
         }
 
@@ -368,11 +368,11 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
                 return JsonData.buildResult(BizCodeEnum.PAY_ORDER_PAY_TIMEOUT);
             } else {
                 // 还有可以通过异步更新支付信息，如payType
-                long timeout = ORDER_PAY_TIME_OUT_MILLS -  orderLiveTime;
+                long timeout = ORDER_PAY_TIME_OUT_MILLS - orderLiveTime;
                 PayInfoVo payInfoVo = new PayInfoVo(repayOrderRequest.getOutTradeNo(), productOrderDO.getPayAmount(),
                         repayOrderRequest.getPayType(), repayOrderRequest.getClientType(),
                         repayOrderRequest.getOutTradeNo(), "", timeout);
-                log.info("payInfoVo={}",payInfoVo);
+                log.info("payInfoVo={}", payInfoVo);
                 String payResult = payFactory.pay(payInfoVo);
                 if (StringUtils.isNotBlank(payResult)) {
                     log.info("二次创建支付订单成功,payInfo:{},payResult", payInfoVo);

@@ -73,7 +73,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, CouponDO> imple
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     @Override
     public JsonData addCouponService(long couponId, CouponCategoryEnum category) {
-        String lockKey = "lock:coupon:" + couponId;
+        String lockKey = "lock:coupon:" + couponId + ":" + LoginInterceptor.threadLocal.get().getId();
         RLock rLock = redissonClient.getLock(lockKey);
         rLock.lock();
         LOGGER.info("领券接口加锁成功：{}", Thread.currentThread().getId());
@@ -114,7 +114,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, CouponDO> imple
         return JsonData.buildSuccess();
     }
 
-    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     @Override
     public JsonData initNewUserCoupon(NewUserCouponRequest newUserCouponRequest) {
         LoginUser loginUser = LoginUser.builder()
@@ -123,7 +123,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, CouponDO> imple
                 .name(newUserCouponRequest.getName())
                 .build();
         List<CouponDO> couponDOList = couponMapper.selectList(new QueryWrapper<CouponDO>()
-                .eq("category",CouponCategoryEnum.NEW_USER));
+                .eq("category", CouponCategoryEnum.NEW_USER));
         LoginInterceptor.threadLocal.set(loginUser);
         for (CouponDO couponDO : couponDOList) {
             addCouponService(couponDO.getId(), CouponCategoryEnum.NEW_USER);

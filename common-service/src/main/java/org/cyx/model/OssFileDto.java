@@ -16,7 +16,7 @@ public class OssFileDto {
     private String etag;
     private String storageClasses;
 
-    public OssFileDto(){
+    public OssFileDto() {
     }
 
     public OssFileDto(long fileSize, String key, String etag, String storageClasses) {

@@ -9,13 +9,13 @@ import lombok.Data;
  * @Author cyx
  * @Date 2021/2/19
  **/
-@ApiModel(value = "登录对象",description = "用户登录请求对象")
+@ApiModel(value = "登录对象", description = "用户登录请求对象")
 @Data
 public class UserLoginRequest {
-    @ApiParam(value = "邮箱",example = "chengyxnet@163.com")
+    @ApiParam(value = "邮箱", example = "chengyxnet@163.com")
     private String mail;
 
-    @ApiParam(value = "密码",example = "123456")
+    @ApiParam(value = "密码", example = "123456")
     private String pwd;
 
 }

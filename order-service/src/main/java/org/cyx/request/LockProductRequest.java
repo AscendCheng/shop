@@ -12,10 +12,10 @@ import java.util.List;
  * @Author cyx
  * @Date 2021/6/27
  **/
-@ApiModel(value = "锁定商品对象",description = "商品锁定对象协议")
+@ApiModel(value = "锁定商品对象", description = "商品锁定对象协议")
 @Data
 public class LockProductRequest {
-    @ApiModelProperty(value = "订单id",example = "123123")
+    @ApiModelProperty(value = "订单id", example = "123123")
     private String orderOutTradeNo;
     @ApiModelProperty(value = "订单项")
     private List<OrderItemVo> orderItemList;

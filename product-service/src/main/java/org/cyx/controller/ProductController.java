@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author cyx
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/product")
-public class   ProductController {
+public class ProductController {
     @Autowired
     private ProductService productService;
 
@@ -29,19 +29,19 @@ public class   ProductController {
     @GetMapping("/page")
     public JsonData pageProductList(
             @ApiParam(value = "页", required = true) @RequestParam(value = "page", defaultValue = "1") int page,
-            @ApiParam(value = "页大小", required = true) @RequestParam(value = "size", defaultValue = "10") int size){
-        Map<String,Object> pageResult = productService.page(page,size);
+            @ApiParam(value = "页大小", required = true) @RequestParam(value = "size", defaultValue = "10") int size) {
+        Map<String, Object> pageResult = productService.page(page, size);
         return JsonData.buildSuccess(pageResult);
     }
 
     @ApiOperation("商品详情")
     @GetMapping("/detail/{product_id}")
-    public JsonData detail(@ApiParam(value = "商品ID",required = true) @PathVariable("product_id") String productId){
+    public JsonData detail(@ApiParam(value = "商品ID", required = true) @PathVariable("product_id") String productId) {
         return JsonData.buildSuccess(productService.findDetailById(productId));
     }
 
     @PostMapping("/lock_product")
-    public JsonData lockProduct(@ApiParam("商品库存锁定")@RequestBody LockProductRequest lockProductRequest){
+    public JsonData lockProduct(@ApiParam("商品库存锁定") @RequestBody LockProductRequest lockProductRequest) {
         JsonData result = productService.lockProduct(lockProductRequest);
         return JsonData.buildSuccess(result);
     }

@@ -22,7 +22,7 @@ public class MailTest {
     private MailService mailService;
 
     @Test
-    public void testSendMail(){
-        mailService.sendMail("2652555476@qq.com","测试邮件","哈哈哈");
+    public void testSendMail() {
+        mailService.sendMail("2652555476@qq.com", "测试邮件", "哈哈哈");
     }
 }

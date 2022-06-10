@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author cyx
@@ -30,7 +30,7 @@ public class BannerController {
 
     @ApiOperation("轮播图列表")
     @GetMapping("/list")
-    public JsonData list(){
+    public JsonData list() {
         List<BannerVO> result = bannerService.list();
         return JsonData.buildSuccess(result);
     }

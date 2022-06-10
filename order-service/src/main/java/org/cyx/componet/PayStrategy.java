@@ -23,7 +23,7 @@ public interface PayStrategy {
     /**
      * 查询订单支付是否成功
      */
-    default String queryPaySuccess(PayInfoVo payInfoVo){
+    default String queryPaySuccess(PayInfoVo payInfoVo) {
         return "";
     }
 

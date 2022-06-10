@@ -68,11 +68,11 @@ public class AlipayConfig {
 
     private volatile static AlipayClient instance = null;
 
-    public static AlipayClient alipayClient(){
-        if(instance == null){
-            synchronized (AlipayConfig.class){
-                if(instance == null){
-                    instance = new DefaultAlipayClient(PAY_GATEWAY,APP_ID,APP_PRI_KEY,FORMATE,CHARSET,ALIPAY_PUB_KEY,SIGN_TYPE);
+    public static AlipayClient alipayClient() {
+        if (instance == null) {
+            synchronized (AlipayConfig.class) {
+                if (instance == null) {
+                    instance = new DefaultAlipayClient(PAY_GATEWAY, APP_ID, APP_PRI_KEY, FORMATE, CHARSET, ALIPAY_PUB_KEY, SIGN_TYPE);
                 }
             }
         }

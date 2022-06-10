@@ -11,11 +11,11 @@ import lombok.Data;
  **/
 @Data
 public class CartItemRequest {
-    @ApiModelProperty(value = "商品ID",example = "1")
+    @ApiModelProperty(value = "商品ID", example = "1")
     @JsonProperty("product_id")
     private Long productId;
 
-    @ApiModelProperty(value = "购买数量",example = "0")
+    @ApiModelProperty(value = "购买数量", example = "0")
     @JsonProperty("buy_num")
     private Integer buyNum;
 

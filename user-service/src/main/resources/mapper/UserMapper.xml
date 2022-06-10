@@ -4,16 +4,16 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.cyx.model.UserDO">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="pwd" property="pwd" />
-        <result column="head_img" property="headImg" />
-        <result column="slogan" property="slogan" />
-        <result column="sex" property="sex" />
-        <result column="points" property="points" />
-        <result column="create_time" property="createTime" />
-        <result column="mail" property="mail" />
-        <result column="secret" property="secret" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="pwd"/>
+        <result column="head_img" property="headImg"/>
+        <result column="slogan" property="slogan"/>
+        <result column="sex" property="sex"/>
+        <result column="points" property="points"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mail" property="mail"/>
+        <result column="secret" property="secret"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

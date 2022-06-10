@@ -38,7 +38,7 @@ public class UserController {
 
     @ApiOperation("用户详情")
     @GetMapping("/detail")
-    public UserVo detail(){
+    public UserVo detail() {
         return userService.detail();
     }
 }

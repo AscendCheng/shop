@@ -19,7 +19,7 @@ public class OssServiceImp implements OssService {
 
     @Override
     public String uploadUserImg(MultipartFile file) {
-        PutObjectResult putObjectResult = ossClient.uploadFile(file,"shop-user-service-1258865434","user-head/");
-        return putObjectResult == null ? null:putObjectResult.getCrc64Ecma();
+        PutObjectResult putObjectResult = ossClient.uploadFile(file, "shop-user-service-1258865434", "user-head/");
+        return putObjectResult == null ? null : putObjectResult.getCrc64Ecma();
     }
 }

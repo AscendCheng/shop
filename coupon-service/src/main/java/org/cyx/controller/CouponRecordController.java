@@ -45,7 +45,7 @@ public class CouponRecordController {
 
     @ApiOperation("rpc锁定优惠券")
     @PostMapping("/lockCouponRecords")
-    public JsonData lockCouponRecords(@ApiParam(value = "锁定优惠券对象")@RequestBody LockCouponRecordRequest lockCouponRecordRequest){
+    public JsonData lockCouponRecords(@ApiParam(value = "锁定优惠券对象") @RequestBody LockCouponRecordRequest lockCouponRecordRequest) {
         return couponRecordService.lockCouponRecords(lockCouponRecordRequest);
     }
 }

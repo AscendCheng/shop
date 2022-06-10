@@ -12,14 +12,14 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author cyx
  * @since 2021-04-07
  */
 public interface ProductService extends IService<ProductDO> {
-    Map<String,Object> page(int page,int size);
+    Map<String, Object> page(int page, int size);
 
     ProductVO findDetailById(String id);
 

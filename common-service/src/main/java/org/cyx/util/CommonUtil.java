@@ -99,19 +99,19 @@ public class CommonUtil {
         return System.currentTimeMillis();
     }
 
-    public static String getRandomString(int length){
+    public static String getRandomString(int length) {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
-        for(int i =0;i<length;i++){
+        for (int i = 0; i < length; i++) {
             sb.append(ALL_CHAR_NUM.charAt(random.nextInt(ALL_CHAR_NUM.length())));
         }
         return sb.toString();
     }
 
-    public static void sengMsg(HttpServletResponse response, Object obj){
+    public static void sengMsg(HttpServletResponse response, Object obj) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        try(PrintWriter printWriter = response.getWriter();) {
+        try (PrintWriter printWriter = response.getWriter();) {
             response.setContentType("application/json;charset=utf-8");
             printWriter.print(objectMapper.writeValueAsString(obj));
             response.flushBuffer();
@@ -120,13 +120,13 @@ public class CommonUtil {
         }
     }
 
-    public static Map<String,Object> iPage2Map(IPage iPage,Object data){
+    public static Map<String, Object> iPage2Map(IPage iPage, Object data) {
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("total_record",iPage.getTotal());
-        resultMap.put("total_page",iPage.getPages());
-        resultMap.put("current_data",data);
-        resultMap.put("current_page",iPage.getCurrent());
-        resultMap.put("page,size",iPage.getSize());
+        resultMap.put("total_record", iPage.getTotal());
+        resultMap.put("total_page", iPage.getPages());
+        resultMap.put("current_data", data);
+        resultMap.put("current_page", iPage.getCurrent());
+        resultMap.put("page,size", iPage.getSize());
         return resultMap;
     }
 

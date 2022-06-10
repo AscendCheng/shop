@@ -41,10 +41,15 @@ public class LoginInterceptor implements HandlerInterceptor {
             LoginUser loginUser = LoginUser.builder().id(id).mail(mail).headImg(headImg).name(name).build();
 
             // 通过attribute存储用户信息
-            request.setAttribute("loginUser",loginUser);
+            request.setAttribute("loginUser", loginUser);
 
             threadLocal.set(loginUser);
             return true;
         }
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        threadLocal.remove();
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CouponFeignService {
     /**
      * 新人发放优惠券
-     * */
+     */
     @PostMapping("/api/coupon/addNewUserCoupon")
     JsonData addNewUserCoupon(@RequestBody NewUserCouponRequest newUserCouponRequest);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author cyx
@@ -18,5 +18,5 @@ public interface ProductMapper extends BaseMapper<ProductDO> {
 
     int lockProductStock(@Param("productId") long productId, @Param("buyNum") int buyNum);
 
-    int unlockProductStock(@Param("productId") Long productId,@Param("buyNum") int buyNum);
+    int unlockProductStock(@Param("productId") Long productId, @Param("buyNum") int buyNum);
 }

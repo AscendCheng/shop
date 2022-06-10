@@ -14,11 +14,11 @@ public class PayStrategyContext {
         this.payStrategy = payStrategy;
     }
 
-    public String executeUnifiedOrder(PayInfoVo payInfoVo){
+    public String executeUnifiedOrder(PayInfoVo payInfoVo) {
         return this.payStrategy.unifiedOrder(payInfoVo);
     }
 
-    public String executeQueryPaySuccess(PayInfoVo payInfoVo){
+    public String executeQueryPaySuccess(PayInfoVo payInfoVo) {
         return this.payStrategy.queryPaySuccess(payInfoVo);
     }
 }

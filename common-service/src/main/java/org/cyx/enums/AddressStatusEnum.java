@@ -9,7 +9,7 @@ public enum AddressStatusEnum {
 
     private int code;
 
-    AddressStatusEnum(int code){
+    AddressStatusEnum(int code) {
         this.code = code;
     }
 }

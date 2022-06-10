@@ -9,7 +9,7 @@ import org.cyx.vo.UserVo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author cyx

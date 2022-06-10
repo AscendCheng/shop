@@ -31,21 +31,21 @@ public class AppConfig {
     private String redisPort;
 
     @Bean
-    public RedissonClient redissonClient(){
+    public RedissonClient redissonClient() {
         Config config = new Config();
 
         //单机方式
-        config.useSingleServer().setAddress("redis://"+redisHost+":"+redisPort);
+        config.useSingleServer().setAddress("redis://" + redisHost + ":" + redisPort);
         RedissonClient redissonClient = Redisson.create(config);
         return redissonClient;
     }
 
     /**
      * 避免存储的key乱码，hash结构依旧乱码
-     * */
+     */
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory){
-        RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(factory);
         RedisSerializer redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
@@ -54,16 +54,16 @@ public class AppConfig {
     }
 
     @Bean
-    public RequestInterceptor requestInterceptor(){
+    public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            if(attributes != null){
+            if (attributes != null) {
                 HttpServletRequest httpServletRequest = attributes.getRequest();
-                if(httpServletRequest == null){
+                if (httpServletRequest == null) {
                     return;
                 }
                 String token = httpServletRequest.getHeader("token");
-                requestTemplate.header("token",token);
+                requestTemplate.header("token", token);
             }
         };
     }

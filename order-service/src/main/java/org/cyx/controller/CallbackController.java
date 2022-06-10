@@ -29,29 +29,30 @@ public class CallbackController {
     private ProductOrderService productOrderService;
 
     @PostMapping("/alipay")
-    public String alipayCallback(HttpServletRequest request,HttpServletResponse response){
+    public String alipayCallback(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String> params = convertRequestParamsToMap(request);
-        log.info("支付宝异步通知消息:{}",params);
+        log.info("支付宝异步通知消息:{}", params);
         try {
-            boolean signVerified = AlipaySignature.rsaCheckV1(params,AlipayConfig.ALIPAY_PUB_KEY,AlipayConfig.CHARSET,AlipayConfig.SIGN_TYPE);
-            if(signVerified){
-                JsonData jsonData = productOrderService.handlerOrderCallbackMsg(ProductOrderPayTypeEnum.ALIPAY,params);
-                if(jsonData.isSuccess()){
+            boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.ALIPAY_PUB_KEY, AlipayConfig.CHARSET, AlipayConfig.SIGN_TYPE);
+            if (signVerified) {
+                JsonData jsonData = productOrderService.handlerOrderCallbackMsg(ProductOrderPayTypeEnum.ALIPAY, params);
+                if (jsonData.isSuccess()) {
                     // 通知结果确认成功，如果8次都不是success，会停止通知
                     return "success";
-                }else {
+                } else {
                     return "failure";
                 }
             }
 
         } catch (AlipayApiException e) {
-            log.error("支付宝异步通知消息校验异常：{}",e);
+            log.error("支付宝异步通知消息校验异常：{}", e);
         }
         return "failure";
     }
 
     /**
      * 将request中的参数转换成Map
+     *
      * @param request
      * @return
      */

@@ -49,7 +49,7 @@ public class MqConfig {
 
     /**
      * 第二个队列的路由key
-     *
+     * <p>
      * 即进入死信队列的路由key
      */
     @Value("${mqconfig.order_close_routing_key}")
@@ -62,36 +62,36 @@ public class MqConfig {
     private Integer ttl;
 
     @Bean
-    public MessageConverter messageConverter(){
+    public MessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
-    public Exchange couponEventExchange(){
-        return new TopicExchange(orderEventExchange,true,false);
+    public Exchange couponEventExchange() {
+        return new TopicExchange(orderEventExchange, true, false);
     }
 
     @Bean
-    public Queue orderCloseDelayQueue(){
-        Map<String,Object> argsMap = new HashMap<>();
-        argsMap.put("x-message-ttl",ttl);
-        argsMap.put("x-dead-letter-routing-key",orderCloseRoutingKey);
-        argsMap.put("x-dead-letter-exchange",orderEventExchange);
-        return new Queue(orderCloseDelayQueue,true,false,false,argsMap);
+    public Queue orderCloseDelayQueue() {
+        Map<String, Object> argsMap = new HashMap<>();
+        argsMap.put("x-message-ttl", ttl);
+        argsMap.put("x-dead-letter-routing-key", orderCloseRoutingKey);
+        argsMap.put("x-dead-letter-exchange", orderEventExchange);
+        return new Queue(orderCloseDelayQueue, true, false, false, argsMap);
     }
 
     @Bean
-    public Queue orderCloseQueue(){
-        return new Queue(orderCloseQueue,true,false,false);
+    public Queue orderCloseQueue() {
+        return new Queue(orderCloseQueue, true, false, false);
     }
 
     @Bean
-    public Binding orderCloseBinding(){
-        return new Binding(orderCloseQueue,Binding.DestinationType.QUEUE,orderEventExchange,orderCloseRoutingKey,null);
+    public Binding orderCloseBinding() {
+        return new Binding(orderCloseQueue, Binding.DestinationType.QUEUE, orderEventExchange, orderCloseRoutingKey, null);
     }
 
     @Bean
-    public Binding couponReleaseDelayBinding(){
-        return new Binding(orderCloseDelayQueue,Binding.DestinationType.QUEUE,orderEventExchange,orderCloseDelayRoutingKey,null);
+    public Binding couponReleaseDelayBinding() {
+        return new Binding(orderCloseDelayQueue, Binding.DestinationType.QUEUE, orderEventExchange, orderCloseDelayRoutingKey, null);
     }
 }

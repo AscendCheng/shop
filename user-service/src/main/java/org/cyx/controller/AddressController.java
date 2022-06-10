@@ -29,7 +29,7 @@ public class AddressController {
 
     @ApiOperation("查询所有收货地址")
     @GetMapping("/list")
-    public JsonData list(){
+    public JsonData list() {
         return addressService.listAddress();
     }
 

@@ -21,14 +21,14 @@ public class SentinelBlockHandler implements BlockExceptionHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, BlockException e) throws Exception {
         JsonData jsonData = null;
-        if(e instanceof FlowException){
+        if (e instanceof FlowException) {
             jsonData = JsonData.buildResult(BizCodeEnum.CONTROL_FLOW);
-        }else if(e instanceof FlowException){
+        } else if (e instanceof FlowException) {
             jsonData = JsonData.buildResult(BizCodeEnum.CONTROL_DEGRADE);
-        }else if(e instanceof FlowException){
+        } else if (e instanceof FlowException) {
             jsonData = JsonData.buildResult(BizCodeEnum.CONTROL_AUTH);
         }
         httpServletResponse.setStatus(200);
-        CommonUtil.sengMsg(httpServletResponse,jsonData);
+        CommonUtil.sengMsg(httpServletResponse, jsonData);
     }
 }

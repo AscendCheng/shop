@@ -4,8 +4,8 @@ import org.cyx.enums.SendCodeEnum;
 import org.cyx.util.JsonData;
 
 public interface NotifyService {
-    JsonData sendCode(SendCodeEnum sendCodeEnum,String to);
+    JsonData sendCode(SendCodeEnum sendCodeEnum, String to);
 
-    boolean checkCode(SendCodeEnum sendCodeEnum,String to,String code);
+    boolean checkCode(SendCodeEnum sendCodeEnum, String to, String code);
 
 }

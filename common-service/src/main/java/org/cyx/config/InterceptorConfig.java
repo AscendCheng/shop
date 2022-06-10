@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @Slf4j
 public class InterceptorConfig implements WebMvcConfigurer {
-    private LoginInterceptor loginInterceptor(){
+    private LoginInterceptor loginInterceptor() {
         return new LoginInterceptor();
     }
 
@@ -22,6 +22,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor())
                 .addPathPatterns("/api/*/**")
-                .excludePathPatterns("/api/user/register","/api/user/login","/api/notify/**","/api/coupon/addNewUserCoupon");
+                .excludePathPatterns("/api/user/register", "/api/user/login", "/api/notify/**", "/api/coupon/addNewUserCoupon");
     }
 }

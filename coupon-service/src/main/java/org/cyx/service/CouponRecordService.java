@@ -11,14 +11,14 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author cyx
  * @since 2021-03-04
  */
 public interface CouponRecordService extends IService<CouponRecordDO> {
-    Map<String,Object> page(int page,int size);
+    Map<String, Object> page(int page, int size);
 
     CouponRecordVo findById(Long recordId);
 

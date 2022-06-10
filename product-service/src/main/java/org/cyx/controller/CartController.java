@@ -60,7 +60,7 @@ public class CartController {
 
     @ApiOperation("下单商品最新信息")
     @PostMapping("/confirm_order_cart_item")
-    public JsonData confirmOrderCartItem(@RequestBody List<Long> productIds){
+    public JsonData confirmOrderCartItem(@RequestBody List<Long> productIds) {
         List<CartItemVo> cartItemVoList = cartService.confirmOrderCartItems(productIds);
         return JsonData.buildSuccess(cartItemVoList);
     }

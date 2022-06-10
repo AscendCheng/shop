@@ -14,26 +14,26 @@ import java.util.stream.Collectors;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author cyx
  * @since 2021-04-07
  */
 @Service
-public class BannerServiceImpl  implements BannerService {
+public class BannerServiceImpl implements BannerService {
     @Autowired
     private BannerMapper bannerMapper;
 
     @Override
-    public List<BannerVO> list(){
+    public List<BannerVO> list() {
         List<BannerDO> doList = bannerMapper.selectList(new QueryWrapper<BannerDO>().orderByDesc("weight"));
         return doList.stream().map(this::beanProcess).collect(Collectors.toList());
     }
 
-    private BannerVO beanProcess(BannerDO bannerDO){
+    private BannerVO beanProcess(BannerDO bannerDO) {
         BannerVO bannerVO = new BannerVO();
-        BeanUtils.copyProperties(bannerDO,bannerVO);
+        BeanUtils.copyProperties(bannerDO, bannerVO);
         return bannerVO;
     }
 }

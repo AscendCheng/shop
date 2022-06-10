@@ -36,15 +36,15 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressDO> im
     @Override
     public JsonData listAddress() {
         LoginUser user = LoginInterceptor.threadLocal.get();
-        List<AddressDO> addressDOList = addressMapper.selectList(new QueryWrapper<AddressDO>().eq("user_id",user.getId()));
+        List<AddressDO> addressDOList = addressMapper.selectList(new QueryWrapper<AddressDO>().eq("user_id", user.getId()));
         return JsonData.buildSuccess(addressDOList);
     }
 
     @Override
     public AddressVo getDetail(String id) {
-        AddressDO addressDO =  addressMapper.selectById(id);
+        AddressDO addressDO = addressMapper.selectById(id);
         AddressVo addressVo = new AddressVo();
-        BeanUtils.copyProperties(addressDO,addressVo);
+        BeanUtils.copyProperties(addressDO, addressVo);
         return addressVo;
     }
 

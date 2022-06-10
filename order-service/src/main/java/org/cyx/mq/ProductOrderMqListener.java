@@ -24,18 +24,18 @@ public class ProductOrderMqListener {
 
     @RabbitListener(queues = "${mqconfig.order_close_queue}")
     public void closeProductOrder(OrderMessage orderMessage, Message message, Channel channel) throws IOException {
-        log.info("监听到消息：closeProductOrder:{}",orderMessage);
+        log.info("监听到消息：closeProductOrder:{}", orderMessage);
         long msgTag = message.getMessageProperties().getDeliveryTag();
-        try{
+        try {
             boolean flag = productOrderService.closeProductOrder(orderMessage);
-            if(flag){
-                channel.basicAck(msgTag,false);
-            }else {
-                channel.basicReject(msgTag,false);
+            if (flag) {
+                channel.basicAck(msgTag, false);
+            } else {
+                channel.basicReject(msgTag, false);
             }
-        }catch (Exception e){
-            log.error("定时关单失败",orderMessage);
-            channel.basicReject(msgTag,false);
+        } catch (Exception e) {
+            log.error("定时关单失败", orderMessage);
+            channel.basicReject(msgTag, false);
         }
     }
 

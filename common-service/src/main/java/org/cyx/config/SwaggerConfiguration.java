@@ -24,7 +24,7 @@ import java.util.List;
 @EnableOpenApi
 public class SwaggerConfiguration {
     @Bean
-    public Docket webApiDoc(){
+    public Docket webApiDoc() {
         return new Docket(DocumentationType.OAS_30)
                 .groupName("用户端接口文档")
                 .pathMapping("/")
@@ -38,18 +38,18 @@ public class SwaggerConfiguration {
                 .paths(PathSelectors.ant("/api/**"))
                 .build()
                 .globalRequestParameters(globalRequestParameter())
-                .globalResponses(HttpMethod.GET,getGlobalResponseMessage());
+                .globalResponses(HttpMethod.GET, getGlobalResponseMessage());
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("shop")
                 .description("微服务接口文档")
-                .contact(new Contact("chengyx","#","chengyxnet@163.com"))
+                .contact(new Contact("chengyx", "#", "chengyxnet@163.com"))
                 .version("v1.0")
                 .build();
     }
 
-    private List<RequestParameter> globalRequestParameter(){
+    private List<RequestParameter> globalRequestParameter() {
         List<RequestParameter> parameters = new ArrayList<>();
         parameters.add(new RequestParameterBuilder().name("token")
                 .description("登录令牌")
@@ -60,7 +60,7 @@ public class SwaggerConfiguration {
         return parameters;
     }
 
-    private List<Response> getGlobalResponseMessage(){
+    private List<Response> getGlobalResponseMessage() {
         List<Response> list = new ArrayList<>();
         list.add(new ResponseBuilder().code("4xx").description("请求错误，根据code和msg检查").build());
         return list;

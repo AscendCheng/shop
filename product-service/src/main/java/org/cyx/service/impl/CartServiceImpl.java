@@ -110,7 +110,7 @@ public class CartServiceImpl implements CartService {
         List<CartItemVo> cartItemVoList = buildCartItem(true);
         // 根据需要的商品Id进行过滤，并清空购物项
         List<CartItemVo> resultList = cartItemVoList.stream().filter(obj -> {
-            if(productIds.contains(obj.getProductId())){
+            if (productIds.contains(obj.getProductId())) {
                 this.deleteProduct(obj.getProductId());
                 return true;
             }
@@ -128,7 +128,7 @@ public class CartServiceImpl implements CartService {
             myCartItems.add(itemVo);
         }
         List<Long> productIdList = myCartItems.stream().map(CartItemVo::getProductId).collect(Collectors.toList());
-        if(latestPrice){
+        if (latestPrice) {
             setProductLatestPrice(myCartItems, productIdList);
         }
         return myCartItems;

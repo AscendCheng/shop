@@ -10,9 +10,9 @@ import lombok.Data;
  **/
 @Data
 public class NewUserCouponRequest {
-    @ApiModelProperty(value = "用户id",example = "id")
+    @ApiModelProperty(value = "用户id", example = "id")
     private long userId;
 
-    @ApiModelProperty(value = "名称",example = "name")
+    @ApiModelProperty(value = "名称", example = "name")
     private String name;
 }
